@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href = "style.css">
+<body>
+<h1>Etch-a-Sketch</h1>
+<button id="btn">Reset</button>
+<div id="container"></div>
+
+<script>
+input=16;
+grid=Math.pow(input,2);
+
+for (var x=1; x<=grid; x++) {
+	var div=document.createElement("div");
+	div.classList.add('etchdiv');
+	div.style.width = 100/input + "%";
+	div.style.height = 100/input + "%";
+	div.style.background = "white";
+	document.getElementById("container").appendChild(div);
+}
+
+const etchdivs=document.querySelectorAll('.etchdiv');
+	etchdivs.forEach((div) => {
+		div.addEventListener('mouseenter', (e) => {
+			e.target.style.background='black';
+		});
+	});
+
+function resetGrid() {
+	for (var x=1; x<=grid; x++) {
+		const container=document.querySelector('#container');
+		const etchdivs=document.querySelector('.etchdiv');
+		let containerReset=container.removeChild(etchdivs);
+	}
+	let input=prompt("What size grid do you want?", "16");
+	grid=Math.pow(input,2);
+	for (var x=1; x<=grid; x++) {
+		var div=document.createElement("div");
+		div.classList.add('etchdiv');
+		div.style.width = 100/input + "%";
+		div.style.height = 100/input + "%";
+		div.style.background = "white";
+		document.getElementById("container").appendChild(div);
+	}
+	const etchdivs=document.querySelectorAll('.etchdiv');
+	etchdivs.forEach((div) => {
+		div.addEventListener('mouseenter', (e) => {
+			e.target.style.background='black';
+		});
+	});
+}
+
+const btn=document.querySelector('#btn');
+btn.addEventListener('click', resetGrid);
+
+</script>
+</body>
+</html>
